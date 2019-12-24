@@ -129,7 +129,9 @@ public class Array<E> {
         size--;
         data[size] = null;
 
-        if (size == data.length / 2) {
+        // 使用lazy的方式去处理，避免复杂度震荡
+        // 就是说1/4的时候收缩1/2的空间，避免反复收缩、添加。
+        if (size == data.length / 4) {
             resize(data.length / 2);
         }
         return ret;
